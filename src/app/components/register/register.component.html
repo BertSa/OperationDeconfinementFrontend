@@ -1,0 +1,67 @@
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0 my-4">
+  <div class="container">
+    <div class="card login-card">
+      <div class="row no-gutters">
+        <div class="col-md-5">
+          <img src="/assets/images/login.jpg" alt="login" class="login-card-img">
+        </div>
+        <div class="col-md-7">
+          <div class="card-body">
+            <div class="brand-wrapper">
+              <img src="assets/images/logo.svg" alt="logo" class="logo">
+            </div>
+            <p class="login-card-description">{{title}}</p>
+            <form class="form-sign_in" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="inputEmail" class="sr-only">Email</label>
+                <input class="form-control" formControlName="email" id="inputEmail" placeholder="Email address"
+                       type="email">
+              </div>
+              <div class="form-group">
+                <label for="phone" class="sr-only">Email</label>
+                <input class="form-control" formControlName="phone" id="phone" placeholder="Phone Number"
+                       type="tel">
+              </div>
+              <div class="form-group mb-4">
+                <label for="NASSM" class="sr-only">Numero assurance maladies</label>
+                <input class="form-control" formControlName="nam" id="NASSM" placeholder="Numero Assurance Maladies"
+                       type="text">
+              </div>
+              <div class="form-group mb-4">
+                <label class="sr-only" for="inputPassword">Password</label>
+                <input class="form-control" formControlName="password" id="inputPassword" placeholder="Password"
+                       type="password">
+              </div>
+
+              <div class="form-group mb-4">
+                <label class="sr-only" for="inputConfirmPassword">Confirm password</label>
+                <input class="form-control" formControlName="confirmation" id="inputConfirmPassword"
+                       placeholder="Password" type="password">
+              </div>
+
+              <div *ngIf="registerForm.errors?.passwordMatch && (registerForm.touched || registerForm.dirty)"
+                   class="cross-validation-error-message alert alert-danger">
+                The confirmation must match the password!
+              </div>
+              <hr class="my-4">
+              <div class="form-group mb-4">
+                <select class="form-control" formControlName="typeOfSubscription">
+                  <option selected disabled>{{typeMessage}}</option>
+                  <option [value]="vaccine">Vaccine</option>
+                  <option [value]="negativeTest">Negative Test</option>
+                </select>
+              </div>
+              <div *ngIf="registerForm.controls?.typeOfSubscription.invalid">nop</div>
+              <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Register">
+            </form>
+            <p class="login-card-footer-text">Already have an account? <a [routerLink]="['/login']" class="text-reset">Sign In</a>
+            </p>
+            <nav class="login-card-footer-nav">
+              <a href="#">Click here for more information</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

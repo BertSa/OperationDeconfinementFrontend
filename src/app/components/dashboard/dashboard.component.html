@@ -1,0 +1,56 @@
+<div class="row d-flex justify-content-center mt-5">
+  <div class="col-xl-6 col-md-12">
+    <div class="card user-card-full">
+      <div class="row">
+        <div class="col-sm-4 bg-c-lite-blue user-profile">
+          <div class="card-block text-center text-white">
+            <div class="m-b-25"><img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius"
+                                     alt="User-Profile-Image"></div>
+            <h6 class="f-w-600">{{user?.firstname + " " + user?.lastname}}</h6>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="card-block">
+            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="m-b-10 f-w-600">Email</p>
+                <h6 class="text-muted f-w-400">{{user?.email}}</h6>
+              </div>
+              <div class="col-sm-6">
+                <p class="m-b-10 f-w-600">Phone</p>
+                <h6 class="text-muted f-w-400">{{user?.phone}}</h6>
+              </div>
+              <div class="col-sm-6">
+                <p class="m-b-10 f-w-600">Nassm</p>
+                <h6 class="text-muted f-w-400">{{user.getLastNumberOrNassm()}}</h6>
+              </div>
+              <div class="col-sm-6">
+                <p class="m-b-10 f-w-600">Birth</p>
+                <h6 class="text-muted f-w-400">{{getUserBirth()}}</h6>
+              </div>
+            </div>
+            <h6 class="mt-2 b-b-default f-w-600">Last license</h6>
+            <div class="card user-card-full">
+              <div class="card-content">
+                <div class="card-body cleartfix">
+                  <div class="media align-items-stretch">
+                    <div class="align-self-center">
+                      <img height="100px"
+                           src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png">
+                    </div>
+                    <div class="media-body">
+                      <h5>License {{user?.license?.type}}</h5>
+                      <span>Category: {{user?.license?.category}}</span>
+                      <h6>{{getTimeLeft()}}</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
