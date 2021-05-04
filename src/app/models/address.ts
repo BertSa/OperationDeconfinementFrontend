@@ -1,11 +1,16 @@
-export class Address {
-  zipCode:string;
-  street:string;
-  city:string;
-  province:string;
-  apt:string;
+export enum Province {
+  Quebec = 'Qc',
+  Qc = 'Quebec'
+}
 
-  constructor(zipCode: string, street: string, city: string, province: string, apt: string) {
+export class Address {
+  zipCode: string;
+  street: string;
+  city: string;
+  province: Province;
+  apt: string;
+
+  constructor(zipCode: string, street: string, city: string, province: Province, apt: string) {
     this.zipCode = zipCode;
     this.street = street;
     this.city = city;

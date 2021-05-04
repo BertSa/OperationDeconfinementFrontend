@@ -10,8 +10,8 @@ import { Error404Component } from './components/error404/error404.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { LogoutComponent } from './components/logout/logout.component';
-import { CompletetionComponent } from './components/completetion/completetion.component';
 import { CompletionComponent } from './components/completion/completion.component';
+import { LicenseComponent } from './components/license/license.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +21,8 @@ import { CompletionComponent } from './components/completion/completion.componen
     DashboardComponent,
     Error404Component,
     LogoutComponent,
-    CompletetionComponent,
-    CompletionComponent
+    CompletionComponent,
+    LicenseComponent
   ],
   imports: [
     BrowserModule,

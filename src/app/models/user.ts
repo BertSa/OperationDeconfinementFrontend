@@ -31,6 +31,11 @@ export class User {
   getLastNumberOrNassm() {
     return '**** **** *' + this.NASSM.substring(this.NASSM.length - 3);
   }
+  getAddress() {
+    let address = this.address;
+    return address?.street + ((address.apt.length>0)?(' Apt: ' + address?.apt):"") + '\n' + address?.city + '\n' + '(' + address?.province + ') ' + address?.zipCode;
+  }
+
 }
 
 export enum Sex {
