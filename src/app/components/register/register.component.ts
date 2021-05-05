@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {UserRegister} from '../../models/userRegister';
 import {UserService} from '../../services/user.service';
+import {TypeLicense} from '../../models/license';
 
 export const confirmPassword: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const password = control.get('password');
@@ -21,6 +22,7 @@ export class RegisterComponent implements OnInit {
   typeMessage: string = 'Select your type of subscription';
   vaccine: string = 'vaccine';
   negativeTest: string = 'negativeTest';
+  typeEnum = TypeLicense;
 
   constructor(private userService: UserService) {
   }
@@ -72,5 +74,10 @@ export class RegisterComponent implements OnInit {
     } else {
       console.log('non valid');
     }
+  }
+
+  // noinspection JSUnusedLocalSymbols
+  keys<E extends { [I in Exclude<keyof E, ''>]: I }>(enumTest: E): Exclude<keyof E, ''>[] {
+    return Object.keys(TypeLicense) as Exclude<keyof E, ''>[];
   }
 }

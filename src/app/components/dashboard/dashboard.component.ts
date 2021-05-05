@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
       'dddd11112222',
       'password',
       'Samuel',
-      'Bertrand', new Address('h8s3dac2', '39fafaef0 rue William-Macdonald', 'Lachinafsfeeae', Province.Qc, '13'),
+      'Bertrand', new Address('h8s3dac2', '39fafaef0 rue William-Macdonald', 'Lachinafsfeeae', Province.Quebec, '13'),
       new License(TypeLicense.Negative_Test, CategoryLicense.YoungAdult, new Date(2021, 4, 3), new Date(2021, 4, 15)),
       new Date('1999/10/11'),
       Sex.MALE);

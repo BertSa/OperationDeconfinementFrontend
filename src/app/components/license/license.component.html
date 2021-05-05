@@ -1,36 +1,28 @@
-<div class="container align-items-center">
-  <div [class.green]="user?.license?.isValid()" class="card">
-    <div class="additional">
-      <div class="user-card">
-        <div class="level center">
-          {{user?.license?.type}}
-        </div>
-        <div class="timeLeft center">
-          {{user?.license?.getTimeLeft()}}
-        </div>
-      </div>
+<div [class.green]="user?.license?.isValid()" class="card center">
+  <div class="user-card">
+    <div class="typeLicense center">
+      {{user?.license?.type}}
     </div>
-    <div class="">
-      <div class="general user-card">
-        <div class="more-info">
-          <h2 class="text-center font-italic">Health License</h2>
-          <div class="coords">
-            <span><small>Lastname: </small><b>{{user?.lastname}}</b></span>
-            <span><small>Firstname: </small><b>{{user?.firstname}}</b></span>
-          </div>
-          <div class="coords">
-            <span><small>Birth: </small><b>{{getFormattedDate(user?.birth)}}</b></span>
-            <span><small>Sex: </small> <b>{{user?.sex}}</b></span>
-          </div>
-          <div class="coords">
-            <span class="small d-block font-weight-bold text-uppercase">{{user?.getAddress()}}</span>
-          </div>
-          <div class="coords">
-            <span><small>Valid: </small><b>{{getFormattedDate(user?.license?.dateCreation)}}</b></span>
-            <span><small>Expire: </small><b>{{getFormattedDate(user?.license?.dateExpire)}}</b></span>
-          </div>
-        </div>
-      </div>
+    <div class="timeLeft center">
+      {{user?.license?.getTimeLeft()}}
+    </div>
+  </div>
+  <div class="card-info">
+    <h2 class="text-center font-italic">Health License</h2>
+    <div class="coords">
+      <span><small>Lastname: </small><b>{{user?.lastname}}</b></span>
+      <span><small>Firstname: </small><b>{{user?.firstname}}</b></span>
+    </div>
+    <div class="coords">
+      <span><small>Birth: </small><b>{{getFormattedDate(user?.birth)}}</b></span>
+      <span><small>Sex: </small> <b>{{user?.sex}}</b></span>
+    </div>
+    <div class="coords">
+      <span class="small d-block font-weight-bold text-uppercase">{{user?.getAddress()}}</span>
+    </div>
+    <div class="coords">
+      <span><small>Valid: </small><b>{{getFormattedDate(user?.license?.dateCreation)}}</b></span>
+      <span><small>Expire: </small><b>{{getFormattedDate(user?.license?.dateExpire)}}</b></span>
     </div>
   </div>
 </div>

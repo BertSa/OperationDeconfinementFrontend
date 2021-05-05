@@ -1,6 +1,6 @@
 export enum Province {
   Quebec = 'Qc',
-  Qc = 'Quebec'
+  Ontario = 'On',
 }
 
 export class Address {

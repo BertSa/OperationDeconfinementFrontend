@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Abel');
 
-.small{
+.small {
   white-space: pre;
 }
 
@@ -14,54 +14,30 @@
 .card {
   width: 450px;
   height: 250px;
-  background: #fff linear-gradient(#f8f8f8, #fff);
+  background: #fff linear-gradient(#ece9e9, #fff);
   box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
   border-radius: 6px;
   overflow: hidden;
-  position: relative;
-  margin: 1.5rem;
   user-select: none;
 }
 
-.card h1 {
-  text-align: center;
-}
-
-.card .additional {
-  position: absolute;
-  width: 150px;
-  height: 100%;
-  background: linear-gradient(#dE685E, #EE786E);
-  transition: width 0.4s;
-  overflow: hidden;
-  z-index: 2;
-}
-
-.card.green .additional {
+.card.green .user-card {
   background: linear-gradient(#92bCa6, #A2CCB6);
 }
 
-
-.card .additional .user-card {
+.card .user-card {
+  background: linear-gradient(#dE685E, #EE786E);
+  position: absolute;
+  overflow: hidden;
+  z-index: 2;
   width: 150px;
   height: 100%;
-  position: relative;
   float: left;
-  padding-right: 5px;
 }
 
-.card .additional .user-card::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 10%;
-  right: -2px;
-  height: 80%;
-  border-left: 2px solid rgba(0, 0, 0, 0.025);
-}
 
-.card .additional .user-card .level,
-.card .additional .user-card .timeLeft {
+.card .user-card .typeLicense,
+.card .user-card .timeLeft {
   top: 15%;
   color: #fff;
   text-transform: uppercase;
@@ -73,42 +49,29 @@
   white-space: nowrap;
 }
 
-.card .additional .user-card .timeLeft {
+.card .user-card .timeLeft {
   top: 85%;
 }
 
-
-.more-info {
-  width: 300px;
-  position: absolute;
-  height: 100%;
+.card-info h2 {
+  margin-bottom: 10px;
 }
-
-.more-info h2 {
-  margin-bottom: 0;
-}
-
 
 .coords {
   margin: 0 1rem;
   font-size: 1rem;
-
 }
 
 .coords span + span {
   float: right;
 }
 
-.card .general {
+.card .card-info {
   width: 300px;
   height: 100%;
   position: absolute;
   top: 0;
-  right: 20px;
+  right: 0;
   z-index: 1;
   box-sizing: border-box;
-  padding: 0 1rem 1rem;
 }
-
-
-

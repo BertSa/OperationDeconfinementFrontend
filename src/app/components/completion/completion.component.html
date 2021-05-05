@@ -1,1 +1,81 @@
-<p>completion works!</p>
+<main class="d-flex align-items-center py-3 py-md-0">
+  <div class="container">
+    <div class="card form-card">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="/assets/images/login.jpg" alt="login" class="form-card-img">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="brand-wrapper">
+              <img src="assets/images/logo.svg" alt="logo" class="logo">
+            </div>
+            <p class="form-card-description">{{title}}</p>
+            <form class="mr-0" [formGroup]="completionForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-9">
+                    <label for="street" class="sr-only">Street</label>
+                    <input class="form-control" formControlName="street" id="street" placeholder="Street"
+                           type="text">
+                  </div>
+                  <div class="col-md-3">
+                    <label for="apt" class="sr-only">Apartment</label>
+                    <input class="form-control" formControlName="apt" id="apt" placeholder="Apt"
+                           type="text">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="col-6">
+                    <label for="city" class="sr-only">City</label>
+                    <input class="form-control" formControlName="city" id="city" placeholder="City"
+                           type="text">
+                  </div>
+                  <div class="col-3">
+                    <select class="form-control" formControlName="province" id="province">
+                      <option id="selectProvince" value="" disabled hidden selected>Province</option>
+                      <option *ngFor="let item of keys(provinceEnum)" [value]="item">{{ item }}</option>
+                    </select>
+                  </div>
+                  <div class="col-3">
+                    <label for="zipCode" class="sr-only">ZipCode</label>
+                    <input class="form-control" formControlName="zipCode" id="zipCode" placeholder="Zip"
+                           type="text" maxlength="7">
+
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" *ngIf="tutorNeeded">
+                <hr class="my-4">
+                <h5>Tutor</h5>
+                <div class="row">
+                  <div class="col">
+                    <label for="firstname" class="sr-only">Firstname</label>
+                    <input class="form-control" formControlName="firstname" id="firstname" placeholder="Firstname"
+                           type="text">
+                  </div>
+                  <div class="col">
+                    <label for="lastname" class="sr-only">Lastname</label>
+                    <input class="form-control" formControlName="lastname" id="lastname" placeholder="Lastname"
+                           type="text">
+                  </div>
+                </div>
+                <label for="email" class="sr-only">Email</label>
+                <input class="form-control" formControlName="email" id="email" placeholder="Email address"
+                       type="email">
+                <label for="phone" class="sr-only">Phone</label>
+                <input class="form-control" formControlName="phone" id="phone" placeholder="Phone Number"
+                       type="tel">
+              </div>
+              <input name="login" id="login" class="btn btn-block form-btn mb-4" type="submit" value="Complete">
+            </form>
+            <nav class="form-card-footer-nav">
+              <a href="#">Click here for more information</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

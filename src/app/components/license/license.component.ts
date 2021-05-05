@@ -10,7 +10,6 @@ import {CategoryLicense, License, TypeLicense} from '../../models/license';
 })
 export class LicenseComponent implements OnInit {
   user: User;
-
   constructor() {
   }
 
