@@ -8,7 +8,8 @@ body {
 }
 
 .brand-wrapper .logo {
-  height: 37px;
+  height: 50px;
+  /*viewBox="0 0 100 100";*/
 }
 
 .form-card {

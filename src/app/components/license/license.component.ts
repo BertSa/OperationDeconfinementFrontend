@@ -20,7 +20,7 @@ export class LicenseComponent implements OnInit {
       'password',
       'Samuel',
       'Bertrand', new Address('h8s3d1', '39 rue William-Macdonald', 'Montreal', Province.Quebec, '13'),
-      new License(TypeLicense.Negative_Test, CategoryLicense.YoungAdult, new Date(2021, 4, 3), new Date(2021, 4, 5)),
+      new License(TypeLicense.Vaccine, CategoryLicense.YoungAdult, new Date(2021, 4, 3), new Date(2021, 4, 19)),
       new Date('1999/10/11'),
       Sex.MALE);
   }
