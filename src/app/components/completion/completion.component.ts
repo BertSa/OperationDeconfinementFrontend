@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Province} from '../../models/address';
+import {Address, Province} from '../../models/address';
+import {Citizen} from '../../models/citizen';
+import {Router} from '@angular/router';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-completion',
@@ -13,17 +16,36 @@ export class CompletionComponent implements OnInit {
   completionForm: FormGroup;
 
   tutorNeeded: boolean = false;
+  private data: Citizen;
 
-  constructor() {
+  constructor(private router: Router, private userService: UserService) {
   }
 
   ngOnInit(): void {
+    console.log(this.data);
     this.setForm();
+  }
+
+  get values(){
+    return this.completionForm.value
   }
 
   onSubmit() {
     if (this.completionForm.valid) {
-      console.log('yes');
+      let user = this.userService.user;
+      user.address=new Address(
+        this.values.street,
+        this.values.city,
+        this.values.province,
+        this.values.zipCode,
+        this.values.apt,
+      );
+
+      this.userService.complete(user).subscribe(
+        value => {
+          console.log(value);
+        }
+      );
     }
   }
 

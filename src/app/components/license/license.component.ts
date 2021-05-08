@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Sex, User} from '../../models/user';
+import {Citizen, Sex} from '../../models/citizen';
 import {Address, Province} from '../../models/address';
 import {CategoryLicense, License, TypeLicense} from '../../models/license';
 
@@ -9,22 +9,26 @@ import {CategoryLicense, License, TypeLicense} from '../../models/license';
   styleUrls: ['./license.component.css']
 })
 export class LicenseComponent implements OnInit {
-  user: User;
+  user: Citizen;
+
   constructor() {
   }
 
   ngOnInit(): void {
-    this.user = new User('sam@bertsa.ca',
+    this.user = new Citizen('sam@bertsa.ca',
       '514-777-7777',
       'dddd11112222',
       'password',
       'Samuel',
       'Bertrand', new Address('h8s3d1', '39 rue William-Macdonald', 'Montreal', Province.Quebec, '13'),
-      new License(TypeLicense.Vaccine, CategoryLicense.YoungAdult, new Date(2021, 4, 3), new Date(2021, 4, 19)),
+      new License(TypeLicense.VACCINE, CategoryLicense.YoungAdult, new Date(2021, 4, 3), new Date(2021, 4, 19)),
       new Date('1999/10/11'),
-      Sex.MALE);
+      Sex.MALE,
+      true,
+      null);
   }
-  getFormattedDate(date:Date) {
+
+  getFormattedDate(date: Date) {
     return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
   }
 

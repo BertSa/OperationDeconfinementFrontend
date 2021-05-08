@@ -12,6 +12,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { LogoutComponent } from './components/logout/logout.component';
 import { CompletionComponent } from './components/completion/completion.component';
 import { LicenseComponent } from './components/license/license.component';
+import {UserService} from './services/user.service';
+import {AuthGuard} from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { LicenseComponent } from './components/license/license.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [UserService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

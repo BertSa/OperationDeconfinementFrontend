@@ -1,7 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {UserRegister} from '../models/userRegister';
+import {TypeLicense} from '../models/license';
+import {Citizen} from '../models/citizen';
+import {map} from 'rxjs/operators';
+import {sessionStorageKey} from '../components/env';
 
 const httpOptions = {
   headers: new HttpHeaders({'content-type': 'application/json'}),
@@ -11,21 +15,30 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  private url: 'http://localhost:9333/register';
+  private url: string = 'http://localhost:9333/api/user';
+  public user: Citizen;
 
   constructor(protected http: HttpClient) {
   }
 
-  registerVaccine(t: UserRegister): Observable<UserRegister> {
-    return this.http.post<UserRegister>(this.url + '/register/vaccine', t, httpOptions);
+  register(user: UserRegister, type: TypeLicense): Observable<Citizen> {
+
+    return this.http.post<Citizen>(this.url + '/register/' + type.toLowerCase(), user, httpOptions).pipe(map(user => {
+      if (user) {
+        sessionStorage.setItem(sessionStorageKey, user.email);
+        this.user = user;
+      }
+
+      return this.user;
+    }));
   }
 
-  registerNegativeTest(t: UserRegister): Observable<UserRegister> {
-    return this.http.post<UserRegister>(this.url + '/register/negative', t, httpOptions);
+  complete(user: Citizen): Observable<Citizen> {
+    return this.http.post<Citizen>(this.url + '/complete', user, httpOptions);
   }
 
   isLoggedIn(): boolean {
-    let email = sessionStorage.getItem('email');
+    let email = sessionStorage.getItem(sessionStorageKey);
     return email != null;
   }
 

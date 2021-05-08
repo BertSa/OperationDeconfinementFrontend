@@ -13,7 +13,7 @@ export class License {
   }
 
   public getTimeLeft() {
-    if (this.type === TypeLicense.Vaccine) {
+    if (this.type === TypeLicense.VACCINE) {
       return 'Permanent';
     }
     let number = this.getNumberOfDays();
@@ -24,7 +24,7 @@ export class License {
   }
 
   isValid(): boolean {
-    if (this.type === TypeLicense.Vaccine) {
+    if (this.type === TypeLicense.VACCINE) {
       return true;
     }
     return this.getNumberOfDays() > 0;
@@ -37,8 +37,8 @@ export class License {
 }
 
 export enum TypeLicense {
-  Vaccine = 'Vaccine',
-  Negative_Test = 'Negative_Test'
+  VACCINE = 'VACCINE',
+  NEGATIVETEST = 'NEGATIVETEST'
 }
 
 export enum CategoryLicense {

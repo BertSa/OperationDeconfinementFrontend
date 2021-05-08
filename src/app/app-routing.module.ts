@@ -1,15 +1,16 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {ActivatedRouteSnapshot, RouterModule, RouterStateSnapshot, Routes} from '@angular/router';
 import {LoginComponent} from './components/login/login.component';
 import {Error404Component} from './components/error404/error404.component';
 import {RegisterComponent} from './components/register/register.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {LicenseComponent} from './components/license/license.component';
 import {CompletionComponent} from './components/completion/completion.component';
+import {AuthGuard} from './auth/auth.guard';
 
 const routes: Routes = [
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'license', component: LicenseComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'license', component: LicenseComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'completion', component: CompletionComponent},
   {path: 'register', component: RegisterComponent},
@@ -20,7 +21,13 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    {
+      provide: 'canActivateTeam',
+      useValue: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => true
+    }
+  ]
 })
 export class AppRoutingModule {
 }

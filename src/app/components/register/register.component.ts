@@ -3,6 +3,8 @@ import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, 
 import {UserRegister} from '../../models/userRegister';
 import {UserService} from '../../services/user.service';
 import {TypeLicense} from '../../models/license';
+import {Router} from '@angular/router';
+import {state} from '@angular/animations';
 
 export const confirmPassword: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const password = control.get('password');
@@ -20,11 +22,9 @@ export class RegisterComponent implements OnInit {
   title: string = 'Register';
   registerForm: FormGroup;
   typeMessage: string = 'Select your type of subscription';
-  vaccine: string = 'vaccine';
-  negativeTest: string = 'negativeTest';
   typeEnum = TypeLicense;
 
-  constructor(private userService: UserService) {
+  constructor(private router: Router, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
       phone: new FormControl('', [
         Validators.required
       ]),
-      nam: new FormControl('', [
+      nassm: new FormControl('', [
         Validators.required,
         Validators.pattern('[a-zA-Z]{4}[0-9]{8}')]),
       password: new FormControl('', [
@@ -54,23 +54,18 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('oui');
     if (this.registerForm.valid) {
       let user = new UserRegister();
       user.email = this.registerForm.value.email;
-      user.phone =this.registerForm.value.phone;
-      user.NAM = this.registerForm.value.NAM;
+      user.phone = this.registerForm.value.phone;
+      user.noAssuranceMaladie = this.registerForm.value.nassm;
       user.password = this.registerForm.value.password;
-      if (this.registerForm.value.typeOfSubscription === this.vaccine) {
-        this.userService.registerVaccine(user).subscribe(value => {
+      this.userService.register(user, this.registerForm.value.typeOfSubscription).subscribe(() => {
+          this.router.navigateByUrl('/login').then();
+        },
+        error => console.log(error));
 
-          },
-          error => console.log(error));
-      } else if (this.registerForm.value.typeOfSubscription === this.negativeTest) {
-        this.userService.registerNegativeTest(user).subscribe(value => {
-
-          },
-          error => console.log(error));
-      }
     } else {
       console.log('non valid');
     }

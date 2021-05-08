@@ -1,6 +1,6 @@
 export class UserRegister {
   email: string;
   phone: string;
-  NAM: string;
+  noAssuranceMaladie: string;
   password: string;
 }
