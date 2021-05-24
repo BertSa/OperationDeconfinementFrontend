@@ -10,19 +10,19 @@
   <div class="card-info">
     <h2 class="text-center font-italic">Health License</h2>
     <div class="coords">
-      <span><small>Lastname: </small><b>{{user?.lastname}}</b></span>
-      <span><small>Firstname: </small><b>{{user?.firstname}}</b></span>
+      <span><small>Lastname: </small><b>{{user?.lastName}}</b></span>
+      <span><small>Firstname: </small><b>{{user?.firstName}}</b></span>
     </div>
     <div class="coords">
-      <span><small>Birth: </small><b>{{getFormattedDate(user?.birth)}}</b></span>
+      <span><small>Birth: </small><b>{{user?.birth|date:'YYYY/MM/dd'}}</b></span>
       <span><small>Sex: </small> <b>{{user?.sex}}</b></span>
     </div>
     <div class="coords">
-      <span class="small d-block font-weight-bold text-uppercase">{{user?.getAddress()}}</span>
+      <span class="small d-block font-weight-bold text-uppercase">{{user?.address|address}}</span>
     </div>
     <div class="coords">
-      <span><small>Valid: </small><b>{{getFormattedDate(user?.license?.dateCreation)}}</b></span>
-      <span><small>Expire: </small><b>{{getFormattedDate(user?.license?.dateExpire)}}</b></span>
+      <span><small>Valid: </small><b>{{user?.license?.dateCreation|date:'YYYY/MM/dd'}}</b></span>
+      <span><small>Expire: </small><b>{{user?.license?.dateExpire|date:'YYYY/MM/dd'}}</b></span>
     </div>
   </div>
 </div>

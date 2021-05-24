@@ -1,5 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik+Mono+One|Roboto+Mono:400,700&display=swap');
+/*body {*/
+/*}*/
+:root {
+  --color-primary: #18181a;
+  --color-secondary: #75757c;
+  --color-dark: #364c62;
+  --color-light: #f5f5f5;
+  --font-family-primary: "Karla", sans-serif;
+  --font-family-secondary: 'Rubik Mono One', sans-serif;
+  --td: 150ms;
+  --te: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+html, body {
+  height: 100%;
+}
+
 body {
-  font-family: "Karla", sans-serif;
+  color: var(--color-dark);
+  font-family: var(--font-family-primary);
+  overflow-x: hidden;
+  position: relative;
   background-color: #d0d0ce;
 }
 

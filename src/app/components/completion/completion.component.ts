@@ -22,7 +22,6 @@ export class CompletionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
     this.setForm();
   }
 
@@ -42,8 +41,10 @@ export class CompletionComponent implements OnInit {
       );
 
       this.userService.complete(user).subscribe(
-        value => {
-          console.log(value);
+        () => {
+          if (this.userService.isUserComplete()){
+            this.router.navigateByUrl('/login').then();
+          }
         }
       );
     }

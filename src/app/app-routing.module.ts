@@ -7,11 +7,13 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {LicenseComponent} from './components/license/license.component';
 import {CompletionComponent} from './components/completion/completion.component';
 import {AuthGuard} from './auth/auth.guard';
+import {LogoutComponent} from './components/logout/logout.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'license', component: LicenseComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogoutComponent},
   {path: 'completion', component: CompletionComponent},
   {path: 'register', component: RegisterComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'},

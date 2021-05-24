@@ -14,6 +14,10 @@ import { CompletionComponent } from './components/completion/completion.componen
 import { LicenseComponent } from './components/license/license.component';
 import {UserService} from './services/user.service';
 import {AuthGuard} from './auth/auth.guard';
+import { HiddenNassmPipe } from './pipes/hidden-nassm.pipe';
+import { PhonePipe } from './pipes/phone.pipe';
+import { AddressPipe } from './pipes/address.pipe';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import {AuthGuard} from './auth/auth.guard';
     Error404Component,
     LogoutComponent,
     CompletionComponent,
-    LicenseComponent
+    LicenseComponent,
+    HiddenNassmPipe,
+    PhonePipe,
+    AddressPipe,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

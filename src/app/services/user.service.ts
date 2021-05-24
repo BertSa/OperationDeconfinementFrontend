@@ -1,11 +1,12 @@
-import {Injectable} from '@angular/core';
+import {HostListener, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 import {UserRegister} from '../models/userRegister';
 import {TypeLicense} from '../models/license';
 import {Citizen} from '../models/citizen';
+import {LoginData} from '../models/loginData';
 import {map} from 'rxjs/operators';
-import {sessionStorageKey} from '../components/env';
+import {completeEndpoint, loginEndpoint, registerEndpoint, sessionStorageKey, sessionStorageSave, urlAPI} from '../components/env';
 
 const httpOptions = {
   headers: new HttpHeaders({'content-type': 'application/json'}),
@@ -15,26 +16,37 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  private url: string = 'http://localhost:9333/api/user';
+
+  @HostListener('window:load') onLoad() {
+    this.saveSession();
+  }
+
+
   public user: Citizen;
 
   constructor(protected http: HttpClient) {
   }
 
+
   register(user: UserRegister, type: TypeLicense): Observable<Citizen> {
 
-    return this.http.post<Citizen>(this.url + '/register/' + type.toLowerCase(), user, httpOptions).pipe(map(user => {
+    return this.http.post<Citizen>(urlAPI + registerEndpoint + '/' + type.toLowerCase(), user, httpOptions).pipe(map(user => {
       if (user) {
         sessionStorage.setItem(sessionStorageKey, user.email);
         this.user = user;
       }
-
       return this.user;
     }));
   }
 
   complete(user: Citizen): Observable<Citizen> {
-    return this.http.post<Citizen>(this.url + '/complete', user, httpOptions);
+    return this.http.post<Citizen>(urlAPI + completeEndpoint, user, httpOptions).pipe(map(user => {
+      if (user) {
+        sessionStorage.setItem(sessionStorageKey, user.email);
+        this.user = user;
+        return this.user;
+      }
+    }));
   }
 
   isLoggedIn(): boolean {
@@ -42,7 +54,36 @@ export class UserService {
     return email != null;
   }
 
+  isUserComplete() {
+    return this.user.profileCompleted;
+  }
+
   logout() {
     sessionStorage.clear();
+  }
+
+  login(login: LoginData) {
+    return this.http.post<Citizen>(urlAPI + loginEndpoint, login, httpOptions).pipe(map(user => {
+      if (user) {
+        sessionStorage.setItem(sessionStorageKey, user.email);
+        this.user = user;
+        return this.user;
+      }
+    }));
+  }
+
+  saveSession() {
+    if (this.isLoggedIn()) {
+      let userr = JSON.stringify(this.user);
+      sessionStorage.setItem(sessionStorageSave, userr);
+    }
+  }
+
+  getSessionSaved(): void {
+    let item = sessionStorage.getItem(sessionStorageSave);
+    if (item) {
+      this.user = JSON.parse(item);
+    }
+    sessionStorage.removeItem(sessionStorageSave);
   }
 }
