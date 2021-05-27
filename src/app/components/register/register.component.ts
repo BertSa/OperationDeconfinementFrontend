@@ -4,7 +4,7 @@ import {UserRegister} from '../../models/userRegister';
 import {UserService} from '../../services/user.service';
 import {TypeLicense} from '../../models/license';
 import {Router} from '@angular/router';
-import {state} from '@angular/animations';
+import Swal from 'sweetalert2';
 
 export const confirmPassword: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const password = control.get('password');
@@ -64,7 +64,14 @@ export class RegisterComponent implements OnInit {
       this.userService.register(user, this.registerForm.value.typeOfSubscription).subscribe(() => {
           this.router.navigateByUrl('/login').then();
         },
-        error => console.log(error));
+        error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.error.details[0]
+          }).then();
+        }
+      );
 
     } else {
       console.log('non valid');

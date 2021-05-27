@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Citizen} from '../../models/citizen';
 import {UserService} from '../../services/user.service';
-import {DatePipe} from '@angular/common';
 import {HiddenNassmPipe} from '../../pipes/hidden-nassm.pipe';
+import {TypeLicense} from '../../models/license';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,32 +10,27 @@ import {HiddenNassmPipe} from '../../pipes/hidden-nassm.pipe';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  hidden:HiddenNassmPipe;
+  hidden: HiddenNassmPipe;
   user: Citizen;
+  isExpired: boolean = true;
+  isVaccine: boolean;
 
   constructor(private serviceUser: UserService) {
   }
 
   ngOnInit(): void {
-    // this.user = new Citizen('sam@bertsa.ca',
-    //   '514-777-7777',
-    //   'dddd11112222',
-    //   'password',
-    //   'Samuel',
-    //   'Bertrand', new Address('h8s3dac2', '39fafaef0 rue William-Macdonald', 'Lachinafsfeeae', Province.Quebec, '13'),
-    //   new License(TypeLicense.NEGATIVETEST, CategoryLicense.YoungAdult, new Date(2021, 4, 3), new Date(2021, 4, 15)),
-    //   new Date('1999/10/11'),
-    //   Sex.MALE,
-    //   true,
-    //   null);
     this.user = this.serviceUser.user;
+    this.isExpired = this.licenseActive();
+    this.isVaccine = this.user.license.type == TypeLicense.VACCINE;
   }
 
-  getUserBirth() {
-    let birth = this.user?.birth;
 
-    console.log(this.user.birth);
-    console.log(birth);
-    return birth.getFullYear() + '/' + (birth.getMonth() + 1) + '/' + birth.getDate();
+  licenseActive() {
+    if (this.user.license.type === TypeLicense.VACCINE) {
+      return false;
+    }
+    let difference = (new Date(this.user.license.dateExpire).getTime() - new Date(Date.now()).getTime());
+    let number = Math.ceil(difference / (1000 * 3600 * 24));
+    return number <= 0;
   }
 }

@@ -1,23 +1,24 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { Error404Component } from './components/error404/error404.component';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {LoginComponent} from './components/login/login.component';
+import {RegisterComponent} from './components/register/register.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {Error404Component} from './components/error404/error404.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { LogoutComponent } from './components/logout/logout.component';
-import { CompletionComponent } from './components/completion/completion.component';
-import { LicenseComponent } from './components/license/license.component';
+import {LogoutComponent} from './components/logout/logout.component';
+import {CompletionComponent} from './components/completion/completion.component';
+import {LicenseComponent} from './components/license/license.component';
 import {UserService} from './services/user.service';
 import {AuthGuard} from './auth/auth.guard';
-import { HiddenNassmPipe } from './pipes/hidden-nassm.pipe';
-import { PhonePipe } from './pipes/phone.pipe';
-import { AddressPipe } from './pipes/address.pipe';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import {HiddenNassmPipe} from './pipes/hidden-nassm.pipe';
+import {PhonePipe} from './pipes/phone.pipe';
+import {AddressPipe} from './pipes/address.pipe';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {TimeleftPipe} from './pipes/timeleft.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     HiddenNassmPipe,
     PhonePipe,
     AddressPipe,
-    NavbarComponent
+    NavbarComponent,
+    TimeleftPipe
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserService,AuthGuard],
+  providers: [UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

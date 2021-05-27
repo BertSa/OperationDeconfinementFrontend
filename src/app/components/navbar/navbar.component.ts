@@ -13,12 +13,8 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("dadad");
-
-
-      $(".menu__link").on('click', () => {
-        $('#main-navigation-toggle').prop('checked', false);
-        console.log('daddad');
-      });
+    $('a.menu__link').on('click', () => {
+      $('#main-navigation-toggle').prop('checked', false);
+    });
   }
 }

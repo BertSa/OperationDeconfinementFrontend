@@ -3,8 +3,8 @@ import {UserService} from '../../services/user.service';
 import {sessionStorageKey} from '../env';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Address} from '../../models/address';
 import {LoginData} from '../../models/loginData';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +37,11 @@ export class LoginComponent implements OnInit {
           this.loggedIn();
         },
         error => {
-          console.log(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.error.details[0]
+          }).then();
         });
     }
   }

@@ -1,4 +1,5 @@
-<input type="checkbox" id="main-navigation-toggle" class="btn btn--close position-fixed mt-0" title="Toggle main navigation"/>
+<input type="checkbox" id="main-navigation-toggle" class="btn btn--close position-fixed mt-0"
+       title="Toggle main navigation"/>
 <label for="main-navigation-toggle">
   <span></span>
 </label>
@@ -7,16 +8,16 @@
   <ul class="menu">
 
     <li class="menu__item" *ngIf="service.isLoggedIn()">
-      <a class="menu__link" href="#">Home</a>
+      <a class="menu__link">Home</a>
     </li>
     <li class="menu__item" *ngIf="service.isLoggedIn()">
       <a class="menu__link" routerLink="/logout">Disconnect</a>
     </li>
     <li class="menu__item" *ngIf="!service.isLoggedIn()">
-      <a class="menu__link" href="#">Log in</a>
+      <a class="menu__link">Log in</a>
     </li>
     <li class="menu__item" *ngIf="!service.isLoggedIn()">
-      <a class="menu__link" href="#">Register</a>
+      <a class="menu__link">Register</a>
     </li>
   </ul>
 </nav>

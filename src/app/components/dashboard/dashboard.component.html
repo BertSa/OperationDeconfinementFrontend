@@ -30,27 +30,49 @@
                 <h6 class="text-muted f-w-400">{{user?.birth|date}}</h6>
               </div>
             </div>
-            <h6 class="mt-2 b-b-default f-w-600">Last license</h6>
-            <div class="card user-card-full">
-              <div class="card-content">
-                <div class="card-body cleartfix">
-                  <div class="media align-items-stretch">
-                    <div class="align-self-center">
-                      <img height="100px"
-                           src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png">
-                    </div>
-                    <div class="media-body">
-                      <h5>License {{user?.license?.type}}</h5>
-                      <span>Category: {{user?.license?.category}}</span>
-                      <h6>{{user?.license?.getTimeLeft()}}</h6>
-                    </div>
+            <h6 class="mt-2 b-b-default f-w-600">Active License</h6>
+            <div class="row mt-4" id="portfolio">
+              <div class="col-12">
+                <div class="card" id="licenseCard">
+                  <div class="card-title">Used space</div>
+                  <div [class.expired]="isExpired" class="card-icon"><i
+                    [class]="{'fa-vial':!isVaccine,'fa-syringe':isVaccine}"
+                    class="fas"></i>
+                  </div>
+                  <div class="card-data">{{user?.license|timeleft}}</div>
+                  <hr/>
+                  <div class="card-hint">
+                    <a *ngIf="isExpired" class="btn btn-danger">Renew</a>
+                    <a *ngIf="!isExpired" class="btn btn-primary">Send new email</a>
                   </div>
                 </div>
               </div>
             </div>
+            <!--            <div class="card user-card-full">-->
+            <!--              <div class="card-content">-->
+            <!--                <div class="card-body cleartfix">-->
+            <!--                  <div class="media align-items-stretch">-->
+            <!--                    <div class="align-self-center">-->
+            <!--                      <img height="100px"-->
+            <!--                           src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"-->
+            <!--                           alt="QrCode">-->
+            <!--                    </div>-->
+            <!--                    <div class="media-body">-->
+            <!--                      <h5>License {{user?.license?.type}}</h5>-->
+            <!--                      <span>Category: {{user?.license?.category}}</span>-->
+            <!--                      <h6>{{user?.license?.getTimeLeft()}}</h6>-->
+            <!--                    </div>-->
+            <!--                  </div>-->
+            <!--                </div>-->
+            <!--              </div>-->
+            <!--            </div>-->
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+<div class="container">
+
+
 </div>

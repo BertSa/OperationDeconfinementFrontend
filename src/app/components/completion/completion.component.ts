@@ -4,6 +4,7 @@ import {Address, Province} from '../../models/address';
 import {Citizen} from '../../models/citizen';
 import {Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-completion',
@@ -25,14 +26,14 @@ export class CompletionComponent implements OnInit {
     this.setForm();
   }
 
-  get values(){
-    return this.completionForm.value
+  get values() {
+    return this.completionForm.value;
   }
 
   onSubmit() {
     if (this.completionForm.valid) {
       let user = this.userService.user;
-      user.address=new Address(
+      user.address = new Address(
         this.values.street,
         this.values.city,
         this.values.province,
@@ -42,8 +43,25 @@ export class CompletionComponent implements OnInit {
 
       this.userService.complete(user).subscribe(
         () => {
-          if (this.userService.isUserComplete()){
-            this.router.navigateByUrl('/login').then();
+          if (this.userService.isUserComplete()) {
+            this.router.navigateByUrl('/login').then(
+              () => {
+                Swal.fire({
+                  title: 'Welcome!',
+                  text: 'You should receive your license on the email you give!',
+                  icon: 'success',
+                  confirmButtonColor: '#3085d6',
+                  confirmButtonText: 'Continue'
+                }).then();
+              },
+              err => {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: err.error.details[0]
+                }).then();
+              }
+            );
           }
         }
       );

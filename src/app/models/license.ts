@@ -12,17 +12,6 @@ export class License {
     this.dateExpire = dateExpire;
   }
 
-  public getTimeLeft() {
-    if (this.type === TypeLicense.VACCINE) {
-      return 'Permanent';
-    }
-    let number = this.getNumberOfDays();
-    if (number<=0) {
-      return 'Expired';
-    }
-    return number + ((number > 1) ? ' days left' : ' day left');
-  }
-
   isValid(): boolean {
     if (this.type === TypeLicense.VACCINE) {
       return true;
@@ -30,8 +19,8 @@ export class License {
     return this.getNumberOfDays() > 0;
   }
 
-  private getNumberOfDays(): number {
-    let difference = (this.dateExpire.getTime() - new Date(Date.now()).getTime());
+  public getNumberOfDays(): number {
+    let difference = (new Date(this.dateExpire).getTime() - new Date(Date.now()).getTime());
     return Math.ceil(difference / (1000 * 3600 * 24));
   }
 }

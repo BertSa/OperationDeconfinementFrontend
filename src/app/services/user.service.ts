@@ -34,8 +34,8 @@ export class UserService {
       if (user) {
         sessionStorage.setItem(sessionStorageKey, user.email);
         this.user = user;
+        return this.user;
       }
-      return this.user;
     }));
   }
 
