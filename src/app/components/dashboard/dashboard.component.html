@@ -18,16 +18,26 @@
                 <h6 class="text-muted f-w-400">{{user?.email}}</h6>
               </div>
               <div class="col-sm-6">
-                <p class="m-b-10 f-w-600">Phone</p>
-                <h6 class="text-muted f-w-400">{{user?.phone|phone}}</h6>
+                <p class="m-b-10 f-w-600">Password <small class="btn-link"><a (click)="updatePassword()">change</a></small></p>
+                <h6 class="text-muted f-w-400">********</h6>
               </div>
               <div class="col-sm-6">
                 <p class="m-b-10 f-w-600">Nassm</p>
                 <h6 class="text-muted f-w-400">{{user?.noAssuranceMaladie|hiddenNassm}}</h6>
               </div>
               <div class="col-sm-6">
+                <p class="m-b-10 f-w-600">Phone <small class="btn-link"><a (click)="updatePhone()">change</a></small></p>
+                <h6 class="text-muted f-w-400">{{user?.phone|phone}}</h6>
+              </div>
+              <div class="col-sm-6">
                 <p class="m-b-10 f-w-600">Birth</p>
                 <h6 class="text-muted f-w-400">{{user?.birth|date}}</h6>
+              </div>
+              <div class="col-sm-6">
+                <p class="m-b-10 f-w-600">Address <small class="btn-link"><a (click)="updateAddress()">change</a></small></p>
+                <h6 class="text-muted f-w-400">
+                  <span class="small d-block text-uppercase">{{user?.address|address}}</span>
+                </h6>
               </div>
             </div>
             <h6 class="mt-2 b-b-default f-w-600">Active License</h6>
@@ -48,31 +58,9 @@
                 </div>
               </div>
             </div>
-            <!--            <div class="card user-card-full">-->
-            <!--              <div class="card-content">-->
-            <!--                <div class="card-body cleartfix">-->
-            <!--                  <div class="media align-items-stretch">-->
-            <!--                    <div class="align-self-center">-->
-            <!--                      <img height="100px"-->
-            <!--                           src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"-->
-            <!--                           alt="QrCode">-->
-            <!--                    </div>-->
-            <!--                    <div class="media-body">-->
-            <!--                      <h5>License {{user?.license?.type}}</h5>-->
-            <!--                      <span>Category: {{user?.license?.category}}</span>-->
-            <!--                      <h6>{{user?.license?.getTimeLeft()}}</h6>-->
-            <!--                    </div>-->
-            <!--                  </div>-->
-            <!--                </div>-->
-            <!--              </div>-->
-            <!--            </div>-->
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="container">
-
-
 </div>

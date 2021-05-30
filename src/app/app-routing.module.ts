@@ -8,9 +8,11 @@ import {LicenseComponent} from './components/license/license.component';
 import {CompletionComponent} from './components/completion/completion.component';
 import {AuthGuard} from './auth/auth.guard';
 import {LogoutComponent} from './components/logout/logout.component';
+import {UpdateInfoComponent} from './components/update-info/update-info.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'update', component: UpdateInfoComponent, canActivate: [AuthGuard]},
   {path: 'license', component: LicenseComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},

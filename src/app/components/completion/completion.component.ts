@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Address, Province} from '../../models/address';
-import {Citizen} from '../../models/citizen';
 import {Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import Swal from 'sweetalert2';
@@ -12,12 +11,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./completion.component.css']
 })
 export class CompletionComponent implements OnInit {
+  public static provinceEnum: any = Province;
   title: string = 'Complete your information';
-  provinceEnum: any = Province;
   completionForm: FormGroup;
 
   tutorNeeded: boolean = false;
-  private data: Citizen;
 
   constructor(private router: Router, private userService: UserService) {
   }
@@ -69,10 +67,13 @@ export class CompletionComponent implements OnInit {
   }
 
   // noinspection JSUnusedLocalSymbols
-  keys<E extends { [I in Exclude<keyof E, ''>]: I }>(enumTest: E): Exclude<keyof E, ''>[] {
+  public static keys<E extends { [I in Exclude<keyof E, ''>]: I }>(enumTest: E): Exclude<keyof E, ''>[] {
     return Object.keys(Province) as Exclude<keyof E, ''>[];
   }
 
+  ProvincesList() {
+    return CompletionComponent.keys(CompletionComponent.provinceEnum);
+  }
 
   // public getPdf(username: string): Observable<Blob>{
   //   return this.http.get<Blob>(`<ton url>/${username}`, {headers : new HttpHeaders({'content-type': 'application/json', responseType: 'blob'}), responseType: 'blob' as 'json'});

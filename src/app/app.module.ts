@@ -19,6 +19,7 @@ import {PhonePipe} from './pipes/phone.pipe';
 import {AddressPipe} from './pipes/address.pipe';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {TimeleftPipe} from './pipes/timeleft.pipe';
+import { UpdateInfoComponent } from './components/update-info/update-info.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {TimeleftPipe} from './pipes/timeleft.pipe';
     PhonePipe,
     AddressPipe,
     NavbarComponent,
-    TimeleftPipe
+    TimeleftPipe,
+    UpdateInfoComponent
   ],
   imports: [
     BrowserModule,

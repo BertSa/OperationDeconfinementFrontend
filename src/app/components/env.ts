@@ -4,3 +4,7 @@ export const urlAPI = 'http://localhost:9333/api/user';
 export const loginEndpoint = '/login';
 export const completeEndpoint = '/complete';
 export const registerEndpoint = '/register';
+export const updateEndpoint = '/update';
+export const updateAddress = '/address';
+export const updatePhone = '/phone';
+export const updatePassword = '/password';

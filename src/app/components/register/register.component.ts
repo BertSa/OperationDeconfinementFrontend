@@ -64,11 +64,11 @@ export class RegisterComponent implements OnInit {
       this.userService.register(user, this.registerForm.value.typeOfSubscription).subscribe(() => {
           this.router.navigateByUrl('/login').then();
         },
-        error => {
+        err => {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: error.error.details[0]
+            text: err.error.details[0]
           }).then();
         }
       );

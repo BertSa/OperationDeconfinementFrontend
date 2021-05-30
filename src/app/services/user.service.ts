@@ -6,7 +6,18 @@ import {TypeLicense} from '../models/license';
 import {Citizen} from '../models/citizen';
 import {LoginData} from '../models/loginData';
 import {map} from 'rxjs/operators';
-import {completeEndpoint, loginEndpoint, registerEndpoint, sessionStorageKey, sessionStorageSave, urlAPI} from '../components/env';
+import {
+  completeEndpoint,
+  loginEndpoint,
+  registerEndpoint,
+  sessionStorageKey,
+  sessionStorageSave,
+  updateAddress,
+  updateEndpoint,
+  updatePassword,
+  updatePhone,
+  urlAPI
+} from '../components/env';
 
 const httpOptions = {
   headers: new HttpHeaders({'content-type': 'application/json'}),
@@ -64,26 +75,50 @@ export class UserService {
 
   login(login: LoginData) {
     return this.http.post<Citizen>(urlAPI + loginEndpoint, login, httpOptions).pipe(map(user => {
-      if (user) {
-        sessionStorage.setItem(sessionStorageKey, user.email);
-        this.user = user;
-        return this.user;
-      }
+      return this.storeUser(user);
     }));
   }
 
+
   saveSession() {
     if (this.isLoggedIn()) {
-      let userr = JSON.stringify(this.user);
-      sessionStorage.setItem(sessionStorageSave, userr);
+      let u = JSON.stringify(this.user);
+      sessionStorage.setItem(sessionStorageSave, u);
     }
   }
 
   getSessionSaved(): void {
-    let item = sessionStorage.getItem(sessionStorageSave);
-    if (item) {
-      this.user = JSON.parse(item);
+    let u = sessionStorage.getItem(sessionStorageSave);
+    if (u) {
+      this.user = JSON.parse(u);
     }
     sessionStorage.removeItem(sessionStorageSave);
+  }
+
+  updateAddress(user: Citizen): Observable<Citizen> {
+    return this.http.post<Citizen>(urlAPI + updateEndpoint + updateAddress, user, httpOptions).pipe(map(user => {
+      return this.storeUser(user);
+    }));
+  }
+
+  updatePhone(user: Citizen): Observable<Citizen> {
+    return this.http.post<Citizen>(urlAPI + updateEndpoint + updatePhone, user, httpOptions).pipe(map(user => {
+      return this.storeUser(user);
+    }));
+  }
+
+  updatePassword(user: Citizen): Observable<Citizen> {
+    return this.http.post<Citizen>(urlAPI + updateEndpoint + updatePassword, user, httpOptions).pipe(map(user => {
+      return this.storeUser(user);
+    }));
+  }
+
+  private storeUser(user: Citizen) {
+    if (user) {
+      sessionStorage.setItem(sessionStorageKey, user.email);
+      this.user = user;
+      return this.user;
+    }
+    return null;
   }
 }

@@ -1,4 +1,5 @@
 export class License {
+  id: number;
   type: TypeLicense;
   category: CategoryLicense;
   dateCreation: Date;
@@ -6,6 +7,7 @@ export class License {
 
 
   constructor(type: TypeLicense, category: CategoryLicense, dateCreation: Date, dateExpire: Date) {
+
     this.type = type;
     this.category = category;
     this.dateCreation = dateCreation;
