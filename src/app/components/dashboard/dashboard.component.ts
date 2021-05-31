@@ -4,7 +4,7 @@ import {UserService} from '../../services/user.service';
 import {TypeLicense} from '../../models/license';
 import Swal from 'sweetalert2';
 import {Address, Province} from '../../models/address';
-import {Utility} from '../../Utility';
+import {Utility} from '../../others/Utility';
 
 
 @Component({
@@ -210,8 +210,8 @@ export class DashboardComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         let u = Utility.deep(this.user);
-        u.password=result.value;
-        u.license=null
+        u.password = result.value;
+        u.license = null;
         this.serviceUser.updatePassword(u).subscribe(u => {
           if (u.password === result.value) {
             this.toast.fire({
@@ -220,14 +220,65 @@ export class DashboardComponent implements OnInit {
               this.user = this.serviceUser.user;
             });
           }
-        },err=>{
+        }, err => {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: err.error.details[0]
           }).then();
-        })
+        });
       }
     });
+  }
+
+  renew() {
+    Swal.fire({
+      title: 'Renew',
+      showDenyButton: true,
+      denyButtonText: 'Vaccine',
+      confirmButtonText: 'Negative test',
+    }).then((result) => {
+      if (result.isConfirmed || result.isDenied) {
+        let type = (result.isConfirmed) ? TypeLicense.NEGATIVETEST : TypeLicense.VACCINE;
+        let u = Utility.deep(this.user);
+        u.license = null;
+        this.serviceUser.renew(type, u).subscribe(u => {
+          if (u.password === result.value) {
+            this.toast.fire({
+              title: 'Licence renewed!',
+              text: 'You should receive an email with your license soon.',
+              timer: 3000
+            }).then(() => {
+              this.user = this.serviceUser.user;
+            });
+          }
+        }, err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.error.details[0]
+          }).then();
+        });
+      }
+    });
+  }
+  sendCopy(){
+    let u = Utility.deep(this.user);
+    u.license = null;
+    this.serviceUser.sendCopy(u).subscribe(response => {
+      if(response){
+        this.toast.fire({
+          title: 'New license sent!',
+          text: 'You should receive an email with your license soon.',
+          timer: 3000
+        }).then();
+      }
+    }, err => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.error.details[0]
+      }).then();
+    })
   }
 }

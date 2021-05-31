@@ -7,17 +7,18 @@ import {Citizen} from '../models/citizen';
 import {LoginData} from '../models/loginData';
 import {map} from 'rxjs/operators';
 import {
+  resetPasswordEndpoint,
   completeEndpoint,
   loginEndpoint,
-  registerEndpoint,
+  registerEndpoint, renewEndpoint, sendCopyEndpoint,
   sessionStorageKey,
   sessionStorageSave,
   updateAddress,
   updateEndpoint,
   updatePassword,
   updatePhone,
-  urlAPI
-} from '../components/env';
+  urlAPI, forgotPasswordEndpoint
+} from '../others/env';
 
 const httpOptions = {
   headers: new HttpHeaders({'content-type': 'application/json'}),
@@ -120,5 +121,22 @@ export class UserService {
       return this.user;
     }
     return null;
+  }
+
+  renew(type: TypeLicense, user: Citizen): Observable<Citizen> {
+    return this.http.post<Citizen>(urlAPI + renewEndpoint + '/' + type, user, httpOptions).pipe(map(user => {
+      return this.storeUser(user);
+    }));
+  }
+
+  sendCopy(user: Citizen): Observable<boolean> {
+    return this.http.post<boolean>(urlAPI + sendCopyEndpoint, user, httpOptions);
+  }
+
+  reset(token: string, password): Observable<Citizen> {
+    return this.http.post<Citizen>(urlAPI + resetPasswordEndpoint + '/' + token, password, httpOptions);
+  }
+  forgot(email: string): Observable<boolean> {
+    return this.http.post<boolean>(urlAPI + forgotPasswordEndpoint, email, httpOptions);
   }
 }

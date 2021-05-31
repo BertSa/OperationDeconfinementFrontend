@@ -54,7 +54,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('oui');
     if (this.registerForm.valid) {
       let user = new UserRegister();
       user.email = this.registerForm.value.email;
@@ -74,7 +73,11 @@ export class RegisterComponent implements OnInit {
       );
 
     } else {
-      console.log('non valid');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Form incomplete!'
+      }).then();
     }
   }
 

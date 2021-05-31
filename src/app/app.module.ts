@@ -19,7 +19,7 @@ import {PhonePipe} from './pipes/phone.pipe';
 import {AddressPipe} from './pipes/address.pipe';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {TimeleftPipe} from './pipes/timeleft.pipe';
-import { UpdateInfoComponent } from './components/update-info/update-info.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { UpdateInfoComponent } from './components/update-info/update-info.compon
     AddressPipe,
     NavbarComponent,
     TimeleftPipe,
-    UpdateInfoComponent
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -24,7 +24,7 @@
               </div>
               <input name="login" id="login" class="btn btn-block form-btn mb-4" type="submit" value="Login">
             </form>
-            <a href="#" class="forgot-password-link">Forgot password?</a>
+            <a (click)="forgotPassword()" class="forgot-password-link">Forgot password?</a>
             <p class="form-card-footer-text">Don't have an account? <a [routerLink]="['/register']" class="text-reset">Register
               here</a>
             </p>

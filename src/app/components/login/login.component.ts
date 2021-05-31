@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
-import {sessionStorageKey} from '../env';
+import {sessionStorageKey} from '../../others/env';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginData} from '../../models/loginData';
@@ -12,6 +12,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  toast = Swal.mixin({
+    toast: true,
+    icon: 'success',
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+  });
   loginForm: FormGroup;
 
   constructor(private router: Router, private serviceUser: UserService) {
@@ -44,6 +52,36 @@ export class LoginComponent implements OnInit {
           }).then();
         });
     }
+  }
+
+  forgotPassword() {
+    Swal.fire({
+      title: 'Reset Password',
+      icon: 'warning',
+      input: 'email',
+      inputLabel: 'Email',
+      confirmButtonText: 'Send'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(result.value);
+        this.serviceUser.forgot(result.value).subscribe(value => {
+            if (value) {
+              this.toast.fire({
+                title: 'Email sent!',
+                text: 'You should receive an email with all information to reset your password soon.',
+                timer: 3000
+              }).then();
+            }
+          }, err => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: err.error.details[0]
+            }).then();
+          }
+        );
+      }
+    });
   }
 
   private loggedIn() {

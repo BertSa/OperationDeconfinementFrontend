@@ -52,8 +52,8 @@
                   <div class="card-data">{{user?.license|timeleft}}</div>
                   <hr/>
                   <div class="card-hint">
-                    <a *ngIf="isExpired" class="btn btn-danger">Renew</a>
-                    <a *ngIf="!isExpired" class="btn btn-primary">Send new email</a>
+                    <a *ngIf="isExpired" class="btn btn-danger" (click)="renew()">Renew</a>
+                    <a *ngIf="!isExpired" class="btn btn-primary" (click)="sendCopy()">Send new email</a>
                   </div>
                 </div>
               </div>

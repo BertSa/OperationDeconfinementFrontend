@@ -8,3 +8,7 @@ export const updateEndpoint = '/update';
 export const updateAddress = '/address';
 export const updatePhone = '/phone';
 export const updatePassword = '/password';
+export const renewEndpoint = '/renew';
+export const sendCopyEndpoint = '/sendCopy';
+export const forgotPasswordEndpoint = '/forgotPassword';
+export const resetPasswordEndpoint = '/resetPassword';
