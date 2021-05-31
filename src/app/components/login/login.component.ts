@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginData} from '../../models/loginData';
 import Swal from 'sweetalert2';
+import {swalErr, toast} from '../../others/Utility';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,6 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
 
-  toast = Swal.mixin({
-    toast: true,
-    icon: 'success',
-    position: 'bottom-end',
-    showConfirmButton: false,
-    timer: 3000,
-  });
   loginForm: FormGroup;
 
   constructor(private router: Router, private serviceUser: UserService) {
@@ -33,23 +27,17 @@ export class LoginComponent implements OnInit {
     });
   }
 
-
   onSubmit() {
     if (this.loginForm.valid) {
       let login = new LoginData();
       login.email = this.loginForm.value.email;
       login.password = this.loginForm.value.password;
 
-
       this.serviceUser.login(login).subscribe(() => {
           this.loggedIn();
         },
-        error => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: error.error.details[0]
-          }).then();
+        err => {
+          swalErr(err).fire().then();
         });
     }
   }
@@ -63,21 +51,15 @@ export class LoginComponent implements OnInit {
       confirmButtonText: 'Send'
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(result.value);
         this.serviceUser.forgot(result.value).subscribe(value => {
             if (value) {
-              this.toast.fire({
+              toast.fire({
                 title: 'Email sent!',
                 text: 'You should receive an email with all information to reset your password soon.',
-                timer: 3000
               }).then();
             }
           }, err => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: err.error.details[0]
-            }).then();
+            swalErr(err).fire().then();
           }
         );
       }

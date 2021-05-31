@@ -4,7 +4,8 @@ import {UserService} from '../../services/user.service';
 import {TypeLicense} from '../../models/license';
 import Swal from 'sweetalert2';
 import {Address, Province} from '../../models/address';
-import {Utility} from '../../others/Utility';
+import {deepCopy, swalErr, toast} from '../../others/Utility';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -14,19 +15,12 @@ import {Utility} from '../../others/Utility';
 })
 export class DashboardComponent implements OnInit {
 
-  toast = Swal.mixin({
-    toast: true,
-    icon: 'success',
-    position: 'bottom-end',
-    showConfirmButton: false,
-    timer: 3000,
-  });
   user: Citizen;
   isExpired: boolean = true;
   isVaccine: boolean;
 
 
-  constructor(private serviceUser: UserService) {
+  constructor(private serviceUser: UserService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -62,23 +56,19 @@ export class DashboardComponent implements OnInit {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        let u = Utility.deep(this.user);
+        let u = deepCopy(this.user);
         u.phone = result.value;
         u.license = null;
         this.serviceUser.updatePhone(u).subscribe(value => {
           if (value.phone === result.value) {
-            this.toast.fire({
+            toast.fire({
               title: 'Phone number has been changed.'
             }).then(() => {
               this.user = this.serviceUser.user;
             });
           }
         }, err => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: err.error.details[0]
-          }).then();
+          swalErr(err).fire();
         });
       }
     });
@@ -133,29 +123,25 @@ export class DashboardComponent implements OnInit {
                   zipCode: $('#zipCode').val().toString()
                 };
                 let address: Address = new Address(values.zipCode, values.street, values.city, Province.Quebec, values.apt);
-                let u = Utility.deep(this.user);
+                let u = deepCopy(this.user);
                 u.address = address;
                 u.license = null;
                 this.serviceUser.updateAddress(u).subscribe(() => {
                   },
                   err => {
-                    Swal.fire({
-                      icon: 'error',
-                      title: 'Oops...',
-                      text: err.error.details[0]
-                    }).then();
+                    swalErr(err).fire();
                   });
               }
             }
           ).then((result) => {
             if (result.isConfirmed) {
-              this.toast.fire({
+              toast.fire({
                 title: 'Address has been changed.'
               }).then(() => {
                 this.user = this.serviceUser.user;
               });
             } else if (result.isDismissed) {
-              this.toast.fire({
+              toast.fire({
                 icon: 'info',
                 text: 'No changes has been made.',
               }).then();
@@ -163,7 +149,7 @@ export class DashboardComponent implements OnInit {
 
           });
         } else {
-          this.toast.fire({
+          toast.fire({
             icon: 'info',
             text: 'No changes has been made.',
           }).then();
@@ -209,23 +195,19 @@ export class DashboardComponent implements OnInit {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        let u = Utility.deep(this.user);
+        let u = deepCopy(this.user);
         u.password = result.value;
         u.license = null;
         this.serviceUser.updatePassword(u).subscribe(u => {
           if (u.password === result.value) {
-            this.toast.fire({
+            toast.fire({
               title: 'Password has been changed.'
             }).then(() => {
               this.user = this.serviceUser.user;
             });
           }
         }, err => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: err.error.details[0]
-          }).then();
+          swalErr(err).fire();
         });
       }
     });
@@ -240,45 +222,59 @@ export class DashboardComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed || result.isDenied) {
         let type = (result.isConfirmed) ? TypeLicense.NEGATIVETEST : TypeLicense.VACCINE;
-        let u = Utility.deep(this.user);
+        let u = deepCopy(this.user);
         u.license = null;
         this.serviceUser.renew(type, u).subscribe(u => {
           if (u.password === result.value) {
-            this.toast.fire({
+            toast.fire({
               title: 'Licence renewed!',
               text: 'You should receive an email with your license soon.',
-              timer: 3000
             }).then(() => {
               this.user = this.serviceUser.user;
             });
           }
         }, err => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: err.error.details[0]
-          }).then();
+          swalErr(err).fire().then();
         });
       }
     });
   }
-  sendCopy(){
-    let u = Utility.deep(this.user);
+
+  sendCopy() {
+    let u = deepCopy(this.user);
     u.license = null;
     this.serviceUser.sendCopy(u).subscribe(response => {
-      if(response){
-        this.toast.fire({
+      if (response) {
+        toast.fire({
           title: 'New license sent!',
           text: 'You should receive an email with your license soon.',
-          timer: 3000
         }).then();
       }
     }, err => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: err.error.details[0]
-      }).then();
-    })
+      swalErr(err).fire().then();
+    });
+  }
+
+  delete() {
+    Swal.fire({
+      title: 'Warning!',
+      text: 'Do you really want to delete your account?',
+      icon: 'warning',
+      confirmButtonText: 'No',
+      showDenyButton: true,
+      denyButtonText: 'Delete it!'
+    }).then(value => {
+      if (value.isDenied) {
+        let citizen = deepCopy(this.user);
+        citizen.license = null;
+        this.serviceUser.delete(citizen).subscribe(value => {
+          if (value) {
+            this.router.navigateByUrl('logout').then();
+          }
+        }, err => {
+          swalErr(err).fire().then();
+        });
+      }
+    });
   }
 }

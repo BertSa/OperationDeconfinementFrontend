@@ -47,7 +47,7 @@
               <div class="form-group mb-4">
                 <select class="form-control" formControlName="typeOfSubscription" id="type">
                   <option id="selectProvince" value="" disabled hidden selected>Type of License</option>
-                  <option *ngFor="let item of keys(typeEnum)" [value]="item">{{ item }}</option>
+                  <option *ngFor="let item of listTypeLicense()" [value]="item">{{ item }}</option>
                 </select>
               </div>
               <div *ngIf="registerForm.controls?.typeOfSubscription.invalid">nop</div>

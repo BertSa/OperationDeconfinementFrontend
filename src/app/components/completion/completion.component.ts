@@ -1,17 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {Address, Province} from '../../models/address';
 import {Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import Swal from 'sweetalert2';
+import {EventListing} from '../../auth/auth.guard';
+import {keys, swalErr} from '../../others/Utility';
+import {Citizen} from '../../models/citizen';
 
 @Component({
   selector: 'app-completion',
   templateUrl: './completion.component.html',
   styleUrls: ['./completion.component.css']
 })
-export class CompletionComponent implements OnInit {
-  public static provinceEnum: any = Province;
+export class CompletionComponent implements OnInit, EventListing {
+  @ViewChild('eventForm') public eventListingForm: NgForm;
+
   title: string = 'Complete your information';
   completionForm: FormGroup;
 
@@ -21,6 +25,7 @@ export class CompletionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.tutorNeeded = this.userService.isTutorNeeded();
     this.setForm();
   }
 
@@ -38,6 +43,12 @@ export class CompletionComponent implements OnInit {
         this.values.zipCode,
         this.values.apt,
       );
+      let citizen = new Citizen();
+      citizen.firstName = this.values.firstname;
+      citizen.lastName = this.values.lastName;
+      citizen.email = this.values.email;
+      citizen.phone = this.values.firstname;
+      user.tutor = citizen;
 
       this.userService.complete(user).subscribe(
         () => {
@@ -53,11 +64,7 @@ export class CompletionComponent implements OnInit {
                 }).then();
               },
               err => {
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
-                  text: err.error.details[0]
-                }).then();
+                swalErr(err).fire().then();
               }
             );
           }
@@ -66,13 +73,8 @@ export class CompletionComponent implements OnInit {
     }
   }
 
-  // noinspection JSUnusedLocalSymbols
-  public static keys<E extends { [I in Exclude<keyof E, ''>]: I }>(enumTest: E): Exclude<keyof E, ''>[] {
-    return Object.keys(Province) as Exclude<keyof E, ''>[];
-  }
-
   ProvincesList() {
-    return CompletionComponent.keys(CompletionComponent.provinceEnum);
+    return keys(Province);
   }
 
   // public getPdf(username: string): Observable<Blob>{

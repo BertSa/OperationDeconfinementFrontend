@@ -11,7 +11,7 @@
               <img src="../../../assets/images/quebec_logo.png" alt="logo" class="logo">
             </div>
             <p class="form-card-description">{{title}}</p>
-            <form class="mr-5" [formGroup]="completionForm" (ngSubmit)="onSubmit()">
+            <form class="mr-5" [formGroup]="completionForm" (ngSubmit)="onSubmit()" #eventForm="ngForm">
               <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-9">

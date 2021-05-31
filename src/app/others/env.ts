@@ -1,6 +1,7 @@
 export const sessionStorageKey = 'user';
 export const sessionStorageSave = 'save';
 export const urlAPI = 'http://localhost:9333/api/user';
+export const urlApp = 'http://localhost:4200';
 export const loginEndpoint = '/login';
 export const completeEndpoint = '/complete';
 export const registerEndpoint = '/register';
@@ -12,3 +13,4 @@ export const renewEndpoint = '/renew';
 export const sendCopyEndpoint = '/sendCopy';
 export const forgotPasswordEndpoint = '/forgotPassword';
 export const resetPasswordEndpoint = '/resetPassword';
+export const deleteEndpoint = '/delete';

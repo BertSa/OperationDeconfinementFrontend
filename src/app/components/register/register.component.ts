@@ -1,17 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserRegister} from '../../models/userRegister';
 import {UserService} from '../../services/user.service';
 import {TypeLicense} from '../../models/license';
 import {Router} from '@angular/router';
-import Swal from 'sweetalert2';
+import {confirmPassword, keys, swalErr} from '../../others/Utility';
 
-export const confirmPassword: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-  const password = control.get('password');
-  const confirmation = control.get('confirmation');
-
-  return password && confirmation && password.value !== confirmation.value ? {passwordMatch: true} : null;
-};
 
 @Component({
   selector: 'app-register',
@@ -22,7 +16,6 @@ export class RegisterComponent implements OnInit {
   title: string = 'Register';
   registerForm: FormGroup;
   typeMessage: string = 'Select your type of subscription';
-  typeEnum = TypeLicense;
 
   constructor(private router: Router, private userService: UserService) {
   }
@@ -64,25 +57,18 @@ export class RegisterComponent implements OnInit {
           this.router.navigateByUrl('/login').then();
         },
         err => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: err.error.details[0]
-          }).then();
+          swalErr(err).fire().then();
         }
       );
 
     } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Form incomplete!'
-      }).then();
+      swalErr('Form incomplete!').fire().then();
     }
   }
 
-  // noinspection JSUnusedLocalSymbols
-  keys<E extends { [I in Exclude<keyof E, ''>]: I }>(enumTest: E): Exclude<keyof E, ''>[] {
-    return Object.keys(TypeLicense) as Exclude<keyof E, ''>[];
+  listTypeLicense() {
+    return keys(TypeLicense);
   }
+
+
 }

@@ -18,7 +18,7 @@
                 <h6 class="text-muted f-w-400">{{user?.email}}</h6>
               </div>
               <div class="col-sm-6">
-                <p class="m-b-10 f-w-600">Password <small class="btn-link"><a (click)="updatePassword()">change</a></small></p>
+                <p class="m-b-10 f-w-600">Password <small class="btn-link"><a (click)="updatePassword()">modify</a></small></p>
                 <h6 class="text-muted f-w-400">********</h6>
               </div>
               <div class="col-sm-6">
@@ -26,7 +26,7 @@
                 <h6 class="text-muted f-w-400">{{user?.noAssuranceMaladie|hiddenNassm}}</h6>
               </div>
               <div class="col-sm-6">
-                <p class="m-b-10 f-w-600">Phone <small class="btn-link"><a (click)="updatePhone()">change</a></small></p>
+                <p class="m-b-10 f-w-600">Phone <small class="btn-link"><a (click)="updatePhone()">modify</a></small></p>
                 <h6 class="text-muted f-w-400">{{user?.phone|phone}}</h6>
               </div>
               <div class="col-sm-6">
@@ -34,7 +34,7 @@
                 <h6 class="text-muted f-w-400">{{user?.birth|date}}</h6>
               </div>
               <div class="col-sm-6">
-                <p class="m-b-10 f-w-600">Address <small class="btn-link"><a (click)="updateAddress()">change</a></small></p>
+                <p class="m-b-10 f-w-600">Address <small class="btn-link"><a (click)="updateAddress()">modify</a></small></p>
                 <h6 class="text-muted f-w-400">
                   <span class="small d-block text-uppercase">{{user?.address|address}}</span>
                 </h6>
@@ -64,3 +64,5 @@
     </div>
   </div>
 </div>
+
+<button (click)="delete()" class="btn btn-primary">delete</button>

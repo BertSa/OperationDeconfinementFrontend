@@ -11,7 +11,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {LogoutComponent} from './components/logout/logout.component';
 import {CompletionComponent} from './components/completion/completion.component';
-import {LicenseComponent} from './components/license/license.component';
 import {UserService} from './services/user.service';
 import {AuthGuard} from './auth/auth.guard';
 import {HiddenNassmPipe} from './pipes/hidden-nassm.pipe';
@@ -19,7 +18,7 @@ import {PhonePipe} from './pipes/phone.pipe';
 import {AddressPipe} from './pipes/address.pipe';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {TimeleftPipe} from './pipes/timeleft.pipe';
-import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import {ChangePasswordComponent} from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     Error404Component,
     LogoutComponent,
     CompletionComponent,
-    LicenseComponent,
     HiddenNassmPipe,
     PhonePipe,
     AddressPipe,

@@ -7,17 +7,21 @@ import {Citizen} from '../models/citizen';
 import {LoginData} from '../models/loginData';
 import {map} from 'rxjs/operators';
 import {
-  resetPasswordEndpoint,
   completeEndpoint,
+  deleteEndpoint,
+  forgotPasswordEndpoint,
   loginEndpoint,
-  registerEndpoint, renewEndpoint, sendCopyEndpoint,
+  registerEndpoint,
+  renewEndpoint,
+  resetPasswordEndpoint,
+  sendCopyEndpoint,
   sessionStorageKey,
   sessionStorageSave,
   updateAddress,
   updateEndpoint,
   updatePassword,
   updatePhone,
-  urlAPI, forgotPasswordEndpoint
+  urlAPI
 } from '../others/env';
 
 const httpOptions = {
@@ -136,7 +140,18 @@ export class UserService {
   reset(token: string, password): Observable<Citizen> {
     return this.http.post<Citizen>(urlAPI + resetPasswordEndpoint + '/' + token, password, httpOptions);
   }
+
   forgot(email: string): Observable<boolean> {
     return this.http.post<boolean>(urlAPI + forgotPasswordEndpoint, email, httpOptions);
+  }
+
+  delete(user: Citizen): Observable<boolean> {
+    return this.http.post<boolean>(urlAPI + deleteEndpoint, user, httpOptions);
+  }
+
+  isTutorNeeded() {
+    let date = new Date();
+    date.setFullYear(date.getFullYear() - 16);
+    return new Date(this.user?.birth).getTime() > date.getTime();
   }
 }

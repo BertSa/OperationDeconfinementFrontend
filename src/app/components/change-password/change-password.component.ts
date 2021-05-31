@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {confirmPassword} from '../register/register.component';
-import Swal from 'sweetalert2';
+import {confirmPassword, swalErr} from '../../others/Utility';
 import {UserService} from '../../services/user.service';
 
 @Component({
@@ -31,7 +30,6 @@ export class ChangePasswordComponent implements OnInit {
     }, {
       validators: confirmPassword
     });
-
   }
 
   onSubmit() {
@@ -40,20 +38,11 @@ export class ChangePasswordComponent implements OnInit {
           this.router.navigateByUrl('/login').then();
         },
         err => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: err.error.details[0]
-          }).then();
+          swalErr(err).fire().then();
         }
       );
-
     } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Form incomplete!'
-      }).then();
+      swalErr('Form incomplete!').fire().then();
     }
   }
 }

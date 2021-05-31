@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
+import {toast} from '../../others/Utility';
 
 @Component({
   selector: 'app-logout',
@@ -15,6 +16,7 @@ export class LogoutComponent implements OnInit {
   ngOnInit(): void {
     this.userService.logout();
     this.router.navigateByUrl('/login').then(() => {
+      toast.fire({title: 'Successfully logged out!'}).then();
     });
   }
 
