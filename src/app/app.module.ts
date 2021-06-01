@@ -19,6 +19,7 @@ import {AddressPipe} from './pipes/address.pipe';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {TimeleftPipe} from './pipes/timeleft.pipe';
 import {ChangePasswordComponent} from './components/change-password/change-password.component';
+import { LoginRegisterComponent } from './components/login-register/login-register.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {ChangePasswordComponent} from './components/change-password/change-passw
     NavbarComponent,
     TimeleftPipe,
     ChangePasswordComponent,
+    LoginRegisterComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate, CanDeactivate<EventListing> {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let path = route.url[0].path.toLowerCase();
     if (!this.userService.isLoggedIn()) {
-      return path.includes('login') || path.includes('register') || path.includes('pwd/change') ? true : this.router.parseUrl('/login');
+      return path.includes('login') || path.includes('register') || path.includes('pwd/change')||path.includes('home')  ? true : this.router.parseUrl('/login');
     } else {
       if (path.includes('dashboard')) {
         return this.userService.isUserComplete() ? true : this.router.parseUrl('/completion');

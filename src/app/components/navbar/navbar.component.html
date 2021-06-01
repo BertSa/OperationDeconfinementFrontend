@@ -1,23 +1,62 @@
-<input type="checkbox" id="main-navigation-toggle" class="btn btn--close position-fixed mt-0"
-       title="Toggle main navigation"/>
-<label for="main-navigation-toggle">
-  <span></span>
-</label>
+<!--<input type="checkbox" id="main-navigation-toggle" class="btn btn&#45;&#45;close position-fixed mt-0"-->
+<!--       title="Toggle main navigation"/>-->
+<!--<label for="main-navigation-toggle">-->
+<!--  <span></span>-->
+<!--</label>-->
 
-<nav id="main-navigation" class="nav-main">
-  <ul class="menu">
+<!--<nav id="main-navigation" class="nav-main">-->
+<!--  <ul class="menu">-->
 
-    <li class="menu__item" *ngIf="service.isLoggedIn()">
-      <a class="menu__link">Home</a>
-    </li>
-    <li class="menu__item" *ngIf="service.isLoggedIn()">
-      <a class="menu__link" routerLink="/logout">Disconnect</a>
-    </li>
-    <li class="menu__item" *ngIf="!service.isLoggedIn()">
-      <a class="menu__link">Log in</a>
-    </li>
-    <li class="menu__item" *ngIf="!service.isLoggedIn()">
-      <a class="menu__link">Register</a>
-    </li>
-  </ul>
-</nav>
+<!--    <li class="menu__item" *ngIf="service.isLoggedIn()">-->
+<!--      <a class="menu__link">Home</a>-->
+<!--    </li>-->
+<!--    <li class="menu__item" *ngIf="service.isLoggedIn()">-->
+<!--      <a class="menu__link" routerLink="/logout">Disconnect</a>-->
+<!--    </li>-->
+<!--    <li class="menu__item" *ngIf="!service.isLoggedIn()">-->
+<!--      <a class="menu__link">Log in</a>-->
+<!--    </li>-->
+<!--    <li class="menu__item" *ngIf="!service.isLoggedIn()">-->
+<!--      <a class="menu__link">Register</a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</nav>-->
+<div class="body-nav">
+
+  <header class="cd-header">
+    <div class="header-wrapper">
+      <div class="logo-wrap">
+        <a href="#" class="hover-target"><span>Operation</span>Deconfinement</a>
+      </div>
+      <div class="nav-but-wrap">
+        <div class="menu-icon hover-target">
+          <span class="menu-icon__line menu-icon__line-left"></span>
+          <span class="menu-icon__line"></span>
+          <span class="menu-icon__line menu-icon__line-right"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav">
+    <div class="nav__content">
+      <ul class="nav__list">
+        <li class="nav__list-item active-nav"><a class="hover-target">Home</a></li>
+        <li class="nav__list-item" *ngIf="service.isLoggedIn()"><a routerLink="/logout" class="hover-target">Disconnect</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Link to page
+================================================== -->
+
+<!--<a href="https://front.codes/" class="link-to-portfolio hover-target" target=”_blank”></a>-->
+<!--<div class="bodyy">-->
+<!--  <nav>-->
+<!--    <ul>-->
+<!--      <li class="active"><a>Home</a></li>-->
+<!--      <li><a *ngIf="service.isLoggedIn()" routerLink="/logout">Disconnect</a></li>-->
+<!--    </ul>-->
+<!--  </nav>-->
+<!--</div>-->

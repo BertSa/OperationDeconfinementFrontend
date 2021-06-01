@@ -1,0 +1,44 @@
+<div class="container right-panel-active">
+  <!-- Sign Up -->
+  <div class="container__form container--signup">
+    <form action="#" class="form" id="form1">
+      <h2 class="form__title">Sign Up</h2>
+      <input type="text" placeholder="No Assurance Maladie" class="input" />
+      <input type="email" placeholder="Email" class="input" />
+      <input type="password" placeholder="Password" class="input" />
+      <input type="password" placeholder="Password Confirmation" class="input" />
+<!--      <select class="input" formControlName="typeOfSubscription" id="type">-->
+<!--        <option id="selectProvince" value="" disabled hidden selected>Type of License</option>-->
+<!--        <option *ngFor="let item of listTypeLicense()" [value]="item">{{ item }}</option>-->
+<!--      </select>-->
+      <button class="btn control-button up">Sign Up</button>
+    </form>
+  </div>
+
+  <!-- Sign In -->
+  <div class="container__form container--signin">
+    <form action="#" class="form" id="form2">
+      <h2 class="form__title">Sign In</h2>
+      <input type="email" placeholder="Email" class="input" />
+      <input type="password" placeholder="Password" class="input" />
+      <a href="#" class="link">Forgot your password?</a>
+      <button class="btn control-button in">Sign In</button>
+    </form>
+  </div>
+
+  <!-- Overlay -->
+  <div class="container__overlay">
+    <div class="overlay">
+      <div class="overlay__panel overlay--left">
+        <h1>Hello, Friend!</h1>
+        <p>Enter your personal details and start a journey with us</p>
+        <button class="btn switch-button in" id="signIn">Sign In</button>
+      </div>
+      <div class="overlay__panel overlay--right">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="btn switch-button up" id="signUp">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>

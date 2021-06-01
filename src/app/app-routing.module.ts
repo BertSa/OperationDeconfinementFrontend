@@ -8,15 +8,17 @@ import {CompletionComponent} from './components/completion/completion.component'
 import {AuthGuard} from './auth/auth.guard';
 import {LogoutComponent} from './components/logout/logout.component';
 import {ChangePasswordComponent} from './components/change-password/change-password.component';
+import {LoginRegisterComponent} from './components/login-register/login-register.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'completion', component: CompletionComponent, canActivate: [AuthGuard]},
+  {path: 'home', component: LoginRegisterComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'pwd/change/:token', component: ChangePasswordComponent, canActivate: [AuthGuard]},
   {path: 'logout', component: LogoutComponent},
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', component: Error404Component},
 ];
 

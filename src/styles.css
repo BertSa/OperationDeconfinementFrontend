@@ -1,30 +1,56 @@
-@import url('https://fonts.googleapis.com/css?family=Rubik+Mono+One|Roboto+Mono:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 
 :root {
-  --background-color-primary: #18181a;
+  --background-color-primary: #caddff;
   --background-color-secondary: #75757c;
-  --color-dark: #364c62;
+  --color-dark: #030d24;
   --color-light: #f5f5f5;
-  --font-family-primary: "Karla", sans-serif;
-  --font-family-secondary: 'Rubik Mono One', sans-serif;
+  --font-family-primary: 'Montserrat', sans-serif;
+
   --td: 150ms;
   --te: cubic-bezier(0.215, 0.61, 0.355, 1);
 
   --color-primary: #039BE5;
-  --color-secondary: #5E35B1;
+  --color-secondary: #0727BAFF;
+
+  /* COLORS */
+  --white: #e9e9e9;
+  --gray: #333;
+  --blue: #0367a6;
+  --lightblue: #007BFFFF;
+
+  /* RADII */
+  --button-radius: 0.7rem;
+
+  /* SIZES */
+  --max-width: 1000px;
+  --max-height: 600px;
+
+  font-size: 16px;
 }
 
 html, body {
   height: 100%;
 }
-
-body {
+body{
   color: var(--color-dark);
   font-family: var(--font-family-primary);
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   position: relative;
-  background-color: #d0d0ce;
+  background-color: var(--background-color-primary);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 4%;
+  -webkit-transition: all 300ms linear;
+  transition: all 300ms linear;
 }
+
 
 .text-primary {
   color: var(--color-primary) !important;
