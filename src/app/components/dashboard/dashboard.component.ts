@@ -59,6 +59,7 @@ export class DashboardComponent implements OnInit {
         let u = deepCopy(this.user);
         u.phone = result.value;
         u.license = null;
+        u.tutor=null;
         this.serviceUser.updatePhone(u).subscribe(value => {
           if (value.phone === result.value) {
             toast.fire({
@@ -126,6 +127,7 @@ export class DashboardComponent implements OnInit {
                 let u = deepCopy(this.user);
                 u.address = address;
                 u.license = null;
+                u.tutor=null;
                 this.serviceUser.updateAddress(u).subscribe(() => {
                   },
                   err => {
@@ -198,6 +200,8 @@ export class DashboardComponent implements OnInit {
         let u = deepCopy(this.user);
         u.password = result.value;
         u.license = null;
+        u.tutor=null;
+
         this.serviceUser.updatePassword(u).subscribe(u => {
           if (u.password === result.value) {
             toast.fire({
@@ -224,6 +228,7 @@ export class DashboardComponent implements OnInit {
         let type = (result.isConfirmed) ? TypeLicense.NEGATIVETEST : TypeLicense.VACCINE;
         let u = deepCopy(this.user);
         u.license = null;
+        u.tutor=null;
         this.serviceUser.renew(type, u).subscribe(u => {
           if (u.password === result.value) {
             toast.fire({
@@ -243,6 +248,9 @@ export class DashboardComponent implements OnInit {
   sendCopy() {
     let u = deepCopy(this.user);
     u.license = null;
+    u.tutor=null;
+
+    $('#sendCopyBtn').addClass('disabled');
     this.serviceUser.sendCopy(u).subscribe(response => {
       if (response) {
         toast.fire({
@@ -253,6 +261,9 @@ export class DashboardComponent implements OnInit {
     }, err => {
       swalErr(err).fire().then();
     });
+    setTimeout(() => {
+      $('#sendCopyBtn').removeClass('disabled');
+    }, 15000);
   }
 
   delete() {
@@ -267,6 +278,7 @@ export class DashboardComponent implements OnInit {
       if (value.isDenied) {
         let citizen = deepCopy(this.user);
         citizen.license = null;
+        citizen.tutor=null;
         this.serviceUser.delete(citizen).subscribe(value => {
           if (value) {
             this.router.navigateByUrl('logout').then();

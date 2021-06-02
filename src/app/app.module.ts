@@ -3,8 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {LoginComponent} from './components/login/login.component';
-import {RegisterComponent} from './components/register/register.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {Error404Component} from './components/error404/error404.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -19,13 +17,11 @@ import {AddressPipe} from './pipes/address.pipe';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {TimeleftPipe} from './pipes/timeleft.pipe';
 import {ChangePasswordComponent} from './components/change-password/change-password.component';
-import { LoginRegisterComponent } from './components/login-register/login-register.component';
+import {LoginRegisterComponent} from './components/login-register/login-register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
     DashboardComponent,
     Error404Component,
     LogoutComponent,

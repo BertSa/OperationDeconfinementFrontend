@@ -1,6 +1,6 @@
 .user-card-full {
   overflow: hidden;
-  background: #fafafa;
+  background: var(--white);
 }
 
 .small {
@@ -41,7 +41,7 @@
   border-radius: 5px
 }
 
-h6 {
+h5 {
   font-size: 14px
 }
 
@@ -95,8 +95,10 @@ h6 {
   margin-bottom: 20px
 }
 
-.m-t-40 {
-  margin-top: 20px
+.deleteBtn {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
 .p-b-5 {
@@ -107,73 +109,68 @@ h6 {
   margin-bottom: 10px
 }
 
-.m-t-40 {
-  margin-top: 20px
-}
-
-
-/*dddddddddddddddddddddddddddddddddddddddddddddddddddddddd*/
-
-
 h1 {
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
   margin: 100px auto;
 }
 
-#about {
-  padding: 16px;
-}
 
-.bdr {
-  border: 1px solid red;
-}
-
-#portfolio {
-  background: #fafafa;
+#licenseSection {
+  background: var(--white);
   padding: 8px 0;
 }
 
-#portfolio .card {
-  background-color: #e5e5f6;
+#licenseSection .card {
+  background-color: var(--background-color-primary);
   margin: 0 -8px 32px -8px;
   color: rgba(0, 0, 0, 0.87);
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-#portfolio .card .card-title {
+#licenseSection .card .card-title {
   display: flex;
   justify-content: flex-end;
   padding: 16px;
   font-weight: 300;
 }
 
-#portfolio .card .card-data {
-  display: flex;
-  justify-content: flex-end;
-  padding: 16px 16px 0 0;
+.row {
+  max-width: 100%;
+  margin: 0;
+}
+
+.card-data {
+  display: grid;
+  justify-content: end;
+
+  text-transform: capitalize;
+  padding: 10px 16px 0;
   font-size: 1.5rem;
   font-weight: 300;
 }
 
-#portfolio .card hr {
+.card-data:first-child {
+  justify-content: start;
+}
+
+#licenseSection .card hr {
   width: 90%;
 }
 
-#portfolio .card .card-hint {
+.card-interaction a {
+  margin-right: 15px;
+}
+
+#licenseSection .card .card-interaction {
   display: flex;
+  justify-content: flex-end;
   padding: 0 0 8px 8px;
   font-size: 0.9rem;
   font-weight: 300;
 }
 
-#portfolio .card .card-hint i {
-  font-size: 1.3rem;
-  color: red;
-  margin-right: 8px;
-}
-
-#portfolio .card .card-icon {
+#licenseSection .card .card-icon {
   display: flex;
   position: absolute;
   top: -20px;
@@ -188,44 +185,16 @@ h1 {
   border-radius: 25%;
 }
 
-#portfolio .card .card-icon i {
+#licenseSection .card .card-icon i {
   font-size: 4rem;
 }
 
-#portfolio #licenseCard .card-icon {
+#licenseSection #licenseCard .card-icon {
   background: linear-gradient(60deg, var(--color-secondary), var(--color-primary));
 }
 
-#portfolio #licenseCard .card-icon.expired {
-  background: linear-gradient(60deg, #F50057, #FF8A80);
-}
-
-#portfolio #licenseCard .card-hint i {
-  color: red;
-}
-
-#portfolio #loveCard .card-icon {
-  background: linear-gradient(60deg, #F50057, #FF8A80);
-}
-
-#portfolio #loveCard .card-hint i {
-  color: blue;
-}
-
-#portfolio #pizzaCard .card-icon {
-  background: linear-gradient(60deg, #fb8c00, #FFCA29);
-}
-
-#portfolio #pizzaCard .card-hint i {
-  color: red;
-}
-
-#portfolio #gameCard .card-icon {
-  background: linear-gradient(60deg, #43A047, #FFEB3B);
-}
-
-#portfolio #gameCard .card-hint i {
-  color: green;
+#licenseSection #licenseCard .card-icon.expired {
+  background: linear-gradient(60deg, #e73434, #a01010);
 }
 
 

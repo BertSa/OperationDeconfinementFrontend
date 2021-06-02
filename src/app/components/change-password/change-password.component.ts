@@ -35,7 +35,7 @@ export class ChangePasswordComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       this.userService.reset(this.token, this.form.value.password).subscribe(() => {
-          this.router.navigateByUrl('/login').then();
+          this.router.navigateByUrl('/home').then();
         },
         err => {
           swalErr(err).fire().then();

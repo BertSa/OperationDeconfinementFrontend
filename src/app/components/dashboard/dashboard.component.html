@@ -6,7 +6,11 @@
           <div class="card-block text-center text-white">
             <div class="m-b-25"><img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius"
                                      alt="User-Profile-Image"></div>
-            <h6 class="f-w-600">{{user?.firstName + " " + user?.lastName}}</h6>
+            <h5 class="f-w-600">{{user?.firstName + " " + user?.lastName}}</h5>
+          </div>
+          <div class="card-block text-center mx-auto deleteBtn">
+            <button (click)="delete()" class="btn btn-link-white"><i class="fas fa-user-slash"></i> Delete Account
+            </button>
           </div>
         </div>
         <div class="col-sm-8">
@@ -18,7 +22,8 @@
                 <h6 class="text-muted f-w-400">{{user?.email}}</h6>
               </div>
               <div class="col-sm-6">
-                <p class="m-b-10 f-w-600">Password <small class="btn-link"><a (click)="updatePassword()">modify</a></small></p>
+                <p class="m-b-10 f-w-600">Password <small class="btn-link"><a
+                  (click)="updatePassword()">modify</a></small></p>
                 <h6 class="text-muted f-w-400">********</h6>
               </div>
               <div class="col-sm-6">
@@ -26,7 +31,8 @@
                 <h6 class="text-muted f-w-400">{{user?.noAssuranceMaladie|hiddenNassm}}</h6>
               </div>
               <div class="col-sm-6">
-                <p class="m-b-10 f-w-600">Phone <small class="btn-link"><a (click)="updatePhone()">modify</a></small></p>
+                <p class="m-b-10 f-w-600">Phone <small class="btn-link"><a (click)="updatePhone()">modify</a></small>
+                </p>
                 <h6 class="text-muted f-w-400">{{user?.phone|phone}}</h6>
               </div>
               <div class="col-sm-6">
@@ -34,26 +40,33 @@
                 <h6 class="text-muted f-w-400">{{user?.birth|date}}</h6>
               </div>
               <div class="col-sm-6">
-                <p class="m-b-10 f-w-600">Address <small class="btn-link"><a (click)="updateAddress()">modify</a></small></p>
+                <p class="m-b-10 f-w-600">Address <small class="btn-link"><a
+                  (click)="updateAddress()">modify</a></small></p>
                 <h6 class="text-muted f-w-400">
                   <span class="small d-block text-uppercase">{{user?.address|address}}</span>
                 </h6>
               </div>
             </div>
             <h6 class="mt-2 b-b-default f-w-600">Active License</h6>
-            <div class="row mt-4" id="portfolio">
+            <div class="row mt-4" id="licenseSection">
               <div class="col-12">
                 <div class="card" id="licenseCard">
-                  <div class="card-title">Used space</div>
+                  <div class="card-title">{{user?.license?.type}}</div>
+
                   <div [class.expired]="isExpired" class="card-icon"><i
                     [class]="{'fa-vial':!isVaccine,'fa-syringe':isVaccine}"
                     class="fas"></i>
                   </div>
-                  <div class="card-data">{{user?.license|timeleft}}</div>
-                  <hr/>
-                  <div class="card-hint">
+                  <div class="row">
+                    <div class="col-md-6 card-data">{{user?.license|timeleft}}</div>
+                    <div class="col-md-6 card-data">{{user?.license?.category}}</div>
+                  </div>
+                  <hr class="ml-4"/>
+                  <div class="card-interaction">
+                    <a class="btn btn-link"><i class="fas fa-info-circle text-primary"></i> More Info</a>
                     <a *ngIf="isExpired" class="btn btn-danger" (click)="renew()">Renew</a>
-                    <a *ngIf="!isExpired" class="btn btn-primary" (click)="sendCopy()">Send new email</a>
+                    <a id="sendCopyBtn" *ngIf="!isExpired" class="btn btn-primary" (click)="sendCopy()"><i
+                      class="fas fa-envelope text-white"></i> Send Copy</a>
                   </div>
                 </div>
               </div>
@@ -65,4 +78,3 @@
   </div>
 </div>
 
-<button (click)="delete()" class="btn btn-primary">delete</button>

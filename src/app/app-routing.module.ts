@@ -1,8 +1,6 @@
 import {NgModule} from '@angular/core';
 import {ActivatedRouteSnapshot, RouterModule, RouterStateSnapshot, Routes} from '@angular/router';
-import {LoginComponent} from './components/login/login.component';
 import {Error404Component} from './components/error404/error404.component';
-import {RegisterComponent} from './components/register/register.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {CompletionComponent} from './components/completion/completion.component';
 import {AuthGuard} from './auth/auth.guard';
@@ -14,8 +12,6 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'completion', component: CompletionComponent, canActivate: [AuthGuard]},
   {path: 'home', component: LoginRegisterComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
-  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'pwd/change/:token', component: ChangePasswordComponent, canActivate: [AuthGuard]},
   {path: 'logout', component: LogoutComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},

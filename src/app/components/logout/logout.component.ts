@@ -15,7 +15,7 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.logout();
-    this.router.navigateByUrl('/login').then(() => {
+    this.router.navigateByUrl('/home').then(() => {
       toast.fire({title: 'Successfully logged out!'}).then();
     });
   }
